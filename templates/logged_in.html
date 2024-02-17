@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>kimbrook.org</title>
+        <style>
+            .container {
+                display: flex;
+            }
+            .column {
+                padding: 20px;
+                position: relative;
+            }
+            .column1 {
+                flex: 1;
+                flex-basis: 25%;
+            }
+            .column2 {
+                flex: 3;
+                flex-basis: 75%;
+            }
+            .column_popup {
+                flex: 1;
+                padding: 20px;
+            }
+            .column1::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                width: 1px;
+                background-color:black;
+            }
+            .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            }
+            .close_button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="column column1">
+                <h1>Profile</h1>
+                <h2>Test</h2><!--Need to add python and html code to pull name from db-->
+                <div>
+                    <button onclick="togglePopup()">Plan an event</button>
+                </div>
+            </div>
+
+            <div id="signupPopup" class="popup">
+                <span class="close_button" onclick="togglePopup()">X</span>
+                <form action="/event_plan" method="post">
+                    <h1>What are you neighborhosting?</h1>
+                    <div>
+                        <label>Event Name</label>
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="Cooking class, Concert, etc."> <!--would be cool to have a placeholder that changes every couple of seconds-->
+                    </div>
+        
+                    <br>
+        
+                    <div>
+                        <label>Describe your event</label>
+                        <br>
+                        <input type="text" id="description" name="description" placeholder="e.g., We will be learning how to cook pho broth!">
+                    </div>
+        
+                    <br>
+        
+                    <div>
+                        <label>Date</label>
+                        <br>
+                        <input type="date" id="date" name="date" placeholder="MM/DD/YYYY">
+                    </div>
+
+                    <br>
+
+                    <div class="container">
+                        <div class="column_popup">
+                            <div>
+                                <label>Start time</label>
+                                <br>
+                                <input type="time" id="start_time" name="start_time">
+                            </div>
+                        </div>
+                        <div class="column_popup">
+                            <label>End time</label>
+                            <br>
+                            <input type="time" id="end_time" name="end_time">
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label>Invitees</label>
+                        <br>
+                        <select id="friends" name="frient">
+                            <option value="friend">Skip</option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <br>
+                    <input type="submit">
+
+                </form>
+            </div>
+
+            <script>
+                function togglePopup() {
+                    var popup = document.getElementById('signupPopup');
+                    popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'block' : 'none';
+                }
+            </script>
+            <div class="column column2">test</div>
+        </div>
+    </body>
+</html>

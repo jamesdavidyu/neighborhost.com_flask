@@ -1,0 +1,155 @@
+<!--LOGIN PAGE-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kimbrook.org</title>
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .close_button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+        }
+        .column {
+            padding: 20px;
+            position: relative;
+        }
+        .column1 {
+            flex: 1;
+            flex-basis: 50%;
+        }
+        .column2 {
+            flex: 3;
+            flex-basis: 50%;
+        }
+        .column1::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 1px;
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+    <!--login form-->
+    <div class="container">
+        <div class="column column1">
+            <h1>kimbrook.org</h1>
+            <form action="/login" method="post">
+
+                <div>
+                    <input type="text" id="email" name="email" placeholder="Email">
+                </div>
+            
+                <br>
+
+                <div>
+                    <input type="password" id="password" name="password" placeholder="Password"><!--add show password button-->
+                </div>
+
+                <div>
+                    <label>
+                        <input type="checkbox" id="rememberme" name="rememberme">Remember me
+                    </label>
+                </div>
+
+                <br>
+
+                <div>
+                    <input type="submit" value="Log In">
+                </div>
+
+            </form>
+
+            <nav>
+                <a href="#forgot_password">Forgot password?</a>
+            </nav>
+
+            <br>
+
+            <label>Looking for your neighbors? </label>
+            <br>
+            <button onclick="togglePopup()">Create an account</button>
+        </div>
+        <div class="column column2">
+            <label>test</label>
+        </div>
+    </div>
+
+    <!--Sign up form pop up box-->
+    <div id="signupPopup" class="popup">
+        <span class="close_button" onclick="togglePopup()">X</span>
+        <form action="/signup" method="post">
+            <h1>Welcome to the neighborhost!</h1>
+            <div>
+                <input type="text" id="first_name" name="first_name" placeholder="First name">
+                <input type="text" id="last_name" name="last_name" placeholder="Last name">
+            </div>
+
+            <br>
+
+            <!-- <div>
+                <input type="text" id="city" name="city" placeholder="City">
+                <select id="state" name="state">
+                    <option value="State">State</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Alabama">Alaska</option>
+                    <option value="Alabama">American Samoa</option>
+                </select>
+            </div>
+
+            <br> don't need for kimbrook.org, include when neighborhost goes nationwide-->
+
+            <div>
+                <input type="text" id="email" name="email" placeholder="Email">
+            </div>
+
+            <br>
+
+            <div>
+                <input type="password" id="password" name="password" placeholder="Password"><!--add show password button-->
+            </div>
+
+            <!-- <div>
+                <label>
+                    <input type="checkbox" id="rememberme" name="rememberme">Remember my login information
+                </label>
+            </div> -->
+
+            <br>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+
+    <!--javascript functionality for popup-->
+    <script>
+        function togglePopup() {
+            var popup = document.getElementById('signupPopup');
+            popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+    <footer>&copy; 2024 kimbrook.org, neighborhosted by dataonlock. All rights reserved.</footer> 
+</body>
+</html>
